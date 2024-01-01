@@ -17,6 +17,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
+# -----------ADMIN URLS-----------
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', views.home_view, name=''),
+    path('about_us', views.aboutus_view),
+    path("contactus", views.contactus_view),
+    path("adminclick", views.adminclick_view),
+    path("doctorclick", views.doctorclick_view),
+    path("patientclick", views.patientclick_view),
+    path("adminsignup", views.admin_signup_view),
+    path("doctorsignup", views.doctor_signup_view, name='doctorsignup'),
+    path("patientsignup", views.patient_signup_view),
+
+    path('adminlogin', LoginView.as_view(template_name='hospital/adminlogin.html'))
+    path('doctorlogin', LoginView.as_view(template_name='hospital/doctorlogin.html'))
+    path('patientlogin', LoginView.as_view(template_name='hospital/patientlogin.html'))
+    path('logout', LogoutView.as_view(template_name='hospital/index.html'), name='logout'),
+    path('afterlogin', views.afterlogin_view, name="afterlogin"),
+    path('admin-dashboard', views.admin_dashboard_view, name="admin-dashboard"),
+
+    path('admin-doctor', views.admin_doctor_view, name='admin-doctor'),
+    
 ]
